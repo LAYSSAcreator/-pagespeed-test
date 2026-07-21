@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Viabilidade Logística</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; margin: 0; padding: 30px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .search-box { display: flex; gap: 10px; margin-bottom: 25px; }
+        input { flex: 1; padding: 12px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; }
+        button { padding: 12px 25px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; display: none; }
+        .card { background: #f8f9fa; border: 1px solid #e3e6f0; border-top: 4px solid #007bff; padding: 15px; border-radius: 4px; }
+        .card h3 { margin-top: 0; color: #4e73df; font-size: 14px; text-transform: uppercase; }
+        .card p { margin: 5px 0; font-size: 16px; font-weight: 500; }
+        .list { padding-left: 20px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>📋 Painel de Liberação de Carga (Multi-API)</h2>
+    <p>Insira o CEP de destino para consolidar os relatórios de rotas, clima e calendário:</p>
+    
+    <div class="search-box">
+        <input type="text" id="cepInput" placeholder="Digite o CEP (apenas números)" maxlength="8">
+        <button onclick="processarLogistica()">Analisar Região</button>
+    </div>
+
+    <div id="dashboard" class="grid">
+        <div class="card" style="border-top-color: #1cc88a;">
+            <h3>📍 Dados de Destino</h3>
+            <p id="logradouro">--</p>
+            <p id="bairro">--</p>
+            <p id="cidadeEstado">--</p>
+        </div>
+
+        <div class="card" style="border-top-color: #f6c23e;">
+            <h3>☀️ Condições Climáticas</h3>
+            <p>Temp. Atual: <span id="temp">--</span></p>
+            <p>Vento: <span id="vento">--</span></p>
+        </div>
+
+        <div class="card" style="border-top-color: #e74a3b;">
+            <h3>📅 Calendário de Feriados (2026)</h3>
+            <ul id="listaFeriados" class="list">
+                <li>Nenhum carregado</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+    async function processarLogistica() {
+    // 1. Captura e limpa o CEP digitado (mantém apenas números)
+    const cepInput = document.getElementById('cepInput').value.replace(/\D/g, '');
+    const dashboard = document.getElementById('dashboard');
+
+    // Validação inicial do lado do cliente
+    if (cepInput.length !== 8) {
+        alert('Por favor, digite um CEP válido com 8 dígitos.');
+        return;
+    }
+
+    try {
+        // Oculta o dashboard temporariamente enquanto carrega os novos dados
+        dashboard.style.display = 'none';
+
+        // =================================================================
+        // API 1: ViaCEP - Consulta de Endereço
+        // =================================================================
+        const urlViaCep = `https://viacep.com.br/ws/${cepInput}/json/`;
+        const responseCep = await fetch(urlViaCep);
+        
+        if (!responseCep.ok) throw new Error('Falha na conexão com o serviço de CEP.');
+        
+        const dataCep = await responseCep.json();
+
+        // O ViaCEP retorna status 200 mesmo se o CEP não existir, mas envia um atributo "erro: true"
+        if (dataCep.erro) {
+            throw new Error('O CEP digitado não foi encontrado na base de dados.');
+        }
+
+        // Atualiza os elementos de endereço no DOM
+        document.getElementById('logradouro').innerText = dataCep.logradouro || 'Logradouro não disponível';
+        document.getElementById('bairro').innerText = dataCep.bairro || 'Bairro não disponível';
+        document.getElementById('cidadeEstado').innerText = `${dataCep.localidade} - ${dataCep.uf}`;
+
+
+        // =================================================================
+        // API 2: Open-Meteo - Coordenadas e Clima (Depende da API 1)
+        // =================================================================
+        // Codifica o nome da cidade para evitar problemas com espaços ou acentos na URL
+        const cidadeQuery = encodeURIComponent(dataCep.localidade);
+        const urlGeocoding = `https://geocoding-api.open-meteo.com/v1/search?name=${cidadeQuery}&count=1`;
+        
+        const responseGeo = await fetch(urlGeocoding);
+        const dataGeo = await responseGeo.json();
+
+        // Verifica se a API de Geocoding encontrou a cidade
+        if (!dataGeo.results || dataGeo.results.length === 0) {
+            throw new Error('Não foi possível determinar as coordenadas geográficas desta cidade.');
+        }
+
+        // Extrai a latitude e longitude do primeiro resultado retornado
+        const { latitude, longitude } = dataGeo.results[0];
+
+        // Busca o clima atual utilizando as coordenadas obtidas
+        const urlWeather = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`;
+        const responseWeather = await fetch(urlWeather);
+        const dataWeather = await responseWeather.json();
+
+        // Atualiza os elementos de clima no DOM
+        const { temperature, windspeed } = dataWeather.current_weather;
+        document.getElementById('temp').innerText = `${temperature}°C`;
+        document.getElementById('vento').innerText = `${windspeed} km/h`;
+
+
+        // =================================================================
+        // API 3: BrasilAPI - Calendário de Feriados
+        // =================================================================
+        // Obtém dinamicamente o ano corrente (2026)
+        const anoAtual = new Date().getFullYear();
+        const urlFeriados = `https://brasilapi.com.br/api/feriados/v1/${anoAtual}`;
+        
+        const responseFeriados = await fetch(urlFeriados);
+        if (!responseFeriados.ok) throw new Error('Não foi possível carregar o calendário de feriados.');
+
+        const dataFeriados = await responseFeriados.json();
+        const listaFeriados = document.getElementById('listaFeriados');
+        
+        // Limpa a lista de feriados antiga
+        listaFeriados.innerHTML = '';
+
+        // Filtra e exibe apenas os 3 primeiros feriados do ano conforme requisito
+        const primeirosFeriados = dataFeriados.slice(0, 3);
+        
+        primeirosFeriados.forEach(feriado => {
+            const li = document.createElement('li');
+            
+            // Formata a data de AAAA-MM-DD para DD/MM de forma simples
+            const [ano, mes, dia] = feriado.date.split('-');
+            
+            li.innerText = `${dia}/${mes} - ${feriado.name}`;
+            listaFeriados.appendChild(li);
+        });
+
+
+        // =================================================================
+        // Exibição do Painel
+        // =================================================================
+        // Se todas as APIs responderam com sucesso, exibe a grid do painel
+        dashboard.style.display = 'grid';
+
+    } catch (error) {
+        // Captura qualquer erro ocorrido em qualquer uma das requisições acima
+        alert(`⚠️ Erro na Viabilidade Logística: ${error.message}`);
+        // Garante que o painel permaneça oculto em caso de falha
+        dashboard.style.display = 'none';
+    }
+}</script>
+</body>
+</html>
