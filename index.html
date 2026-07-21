@@ -1,31 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt=br">
 <head>
     <meta charset="UTF-8">
-    <title>CRUD Contatos</title>
-
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
+    <h2>Consulta CEP</h2>
+    <input type="text" id="cep" placeholder="Digite o CEP">
+    <button onclick="buscarCEP()">Buscar</button>
 
-    <div class="container">
-
-        <h1>CRUD Contatos</h1>
-
-        <form id="formContato">
-
-            <input type="text" id="nome" placeholder="Nome" required>
-
-            <input type="text" id="telefone" placeholder="Telefone" required>
-
-            <button type="submit">Salvar</button>
-
-        </form>
-
-        <ul id="lista"></ul>
-
-    </div>
-
+    <div id="resultado"></div>
+    <h2> Tempo</h2>
+    <div id="temp"></div>
+    
     <script src="script.js"></script>
 
 </body>
