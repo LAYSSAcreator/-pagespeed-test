@@ -1,0 +1,105 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+#logo{
+    justify-content: center;
+    width: 250px; 
+}
+#topo{
+    background-color: rgb(62, 21, 101);
+    height: 100px;
+}
+#lista{
+    background-color: rgb(62, 21, 101);
+    padding: 2px;
+    width: 250px;
+    position: fixed;
+    justify-content: center;
+    display: flex;
+    height: 100%;
+
+}
+ul{
+    margin-top: 25px;
+}
+li{
+    color:aliceblue;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    list-style: none;
+    margin-top: 40px;
+    font-size:20px;
+    display: flex;
+}
+#maldivas{
+    display: flex;
+    justify-content: center;
+    width: 500px;
+    border-radius: 30px;
+    padding: 12px;
+}
+
+article{
+    width: 80%;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+aside{
+   width: 20%;
+}
+#conteudo{
+    display: flex;
+    justify-content: left;
+    gap: 30px;
+}
+#bloco_1{
+ margin-left: -120px;
+ flex: 1;
+ width: 100%;
+ height: auto;
+ display: block;
+}
+#bloco_2 {
+    display: flex;
+    justify-content: baseline;
+    width: 100%;
+    height: auto;
+    display: block;
+    flex: 1;
+}
+#canada{
+    display: flex;
+    justify-content:center;
+    width: 500px;
+    border-radius: 30px;
+    padding: 12px;
+    height: 335px;
+ 
+}
+#coreia{
+    display: flex;
+    justify-content:center;
+    width: 500px;
+    border-radius: 30px;
+    padding: 12px;
+    height: 335px;
+ 
+}
+#bloco_3{
+    display: flex;
+    justify-content: baseline;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+#estrela{
+    display: flex;
+    width: 140px;
+    justify-content: center;
+    margin-top: -50px;
+    margin-left: 20px;
+
+}
+
