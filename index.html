@@ -12,40 +12,67 @@
 </head>
 <body>
     <div id="topo">
-        <h1> <img src="image_8d3fb52d-removebg-preview.png" id="logo"> </h1>
+        <h1> <img src=image_8d3fb52d-removebg-preview.png" id="logo"> </h1>
     </div>
+
     <div id="conteudo">
-    <aside>
-    <nav id="lista"><br><br>
-        <ul>
-          <li>Início</li>
-          <li>Viagens</li>
-          <li>Roteiros</li>
-          <li>Ajuda</li>
-          <li>Sobre nós</li>
-          <li>Contato</li>
-        </ul>
-      </nav>
-    </aside>
-    <article>
-      <div id="bloco_1">
-        <img id= "maldivas" src="ferias-nas-maldivas.jpg" alt="Maldivas">
-        <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
-        <h2></h2>
-      </div>
+      <aside>
+        <nav id="lista"><br><br>
+            <ul>
+              <li>Início</li>
+              <li>Viagens</li>
+              <li>Roteiros</li>
+              <li>Ajuda</li>
+              <li>Sobre nós</li>
+            </ul>
+          </nav>
+      </aside>
+      <main id="principal">
+        <section id="cards">
+          <div id="bloco_1">
+            <img id= "maldivas" src="ferias-nas-maldivas.jpg" alt="Maldivas">
+            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"> <h6> de R$1800 por 2x de R$900,00</h6>
+            <h4>Viagem de Casal para as praias de Maldivas.<br>Quarto especial para lua de mel com a diária a combinar.</h4>
+          </div>
 
-      <div id="bloco_2">
-        <img id = "canada" src="roteiros-de-viagem-canada.jpg" alt="Canadá">
-        <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
-      </div>
+          <div id="bloco_2">
+            <img id = "canada" src="roteiros-de-viagem-canada.jpg" alt="Canadá">
+            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"><h6> de R$2400 por 2x de R$1200,00</h6>
+            <h4>Explore as trechos canadenses com conforto e segurança,<br> viagem adequada para uma família que pretende passar 
+              <br>diárias com ótimos descontos.</h4>
+          </div>
 
-      <div id = "bloco_3">
-        <img id="coreia" src="images.jpg" alt="Coreia">
-        <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
-
-      </div>
-
-    </article>
-</div>
+          <div id = "bloco_3">
+            <img id="coreia" src="images.jpg" alt="Coreia">
+            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"><h6> de R$1800 por 5x de R$360,00</h6>
+            <h4>Experiências estilo dorama será encontrada em diárias <br> de baixo custo.
+            <br> Quartos com disponibilidade para uma família de 5 pessoas.</h4>
+          </div>
+        </section>
+        <br>
+        <br>
+        
+        <section id="ajuda">
+          <hr>
+          <div id="ajuda">
+            <h2>Precisa de Ajuda?</h2>
+            <p>Fale com a nossa equipe de suporte para tirar dúvidas, alterar reservas ou planejar sua viagem.</p>
+              <form class="form-contato" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
+                <input type="text" placeholder="Seu Nome" required>
+                <input type="email" placeholder="Seu E-mail" required>
+                <textarea placeholder="Como podemos te ajudar?" rows="4" required></textarea>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+              </form>
+            </div>
+          </section>
+          <br>
+          <br>
+          <section id="sobre">
+            <h2>Sobre a Sam-Airline</h2>
+            <p>A <strong>Sam-Airline</strong> nasceu com o propósito de conectar pessoas aos seus sonhos através de viagens acessíveis, seguras e inesquecíveis.</p>
+            <p>Com mais de 10 anos de experiência no mercado de aviação e turismo, <br>nossa missão é garantir que você viaje com total tranquilidade, aproveitando as melhores condições de pagamento e suporte 24 horas por dia.</p>
+        </section>
+      </main>
+    </div> 
 </body>
 </html>
