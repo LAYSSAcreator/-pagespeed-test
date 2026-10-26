@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,74 +6,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sam-airline</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="topo">
-        <h1> <img src=image_8d3fb52d-removebg-preview.png" id="logo"> </h1>
+        <h1> <img src="image_8d3fb52d-removebg-preview.png" id="logo" alt="Logo"> </h1>
     </div>
 
     <div id="conteudo">
-      <aside>
-        <nav id="lista"><br><br>
-            <ul>
-              <li>Início</li>
-              <li>Viagens</li>
-              <li>Roteiros</li>
-              <li>Ajuda</li>
-              <li>Sobre nós</li>
-            </ul>
-          </nav>
-      </aside>
-      <main id="principal">
-        <section id="cards">
-          <div id="bloco_1">
-            <img id= "maldivas" src="ferias-nas-maldivas.jpg" alt="Maldivas">
-            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"> <h6> de R$1800 por 2x de R$900,00</h6>
-            <h4>Viagem de Casal para as praias de Maldivas.<br>Quarto especial para lua de mel com a diária a combinar.</h4>
-          </div>
-
-          <div id="bloco_2">
-            <img id = "canada" src="roteiros-de-viagem-canada.jpg" alt="Canadá">
-            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"><h6> de R$2400 por 2x de R$1200,00</h6>
-            <h4>Explore as trechos canadenses com conforto e segurança,<br> viagem adequada para uma família que pretende passar 
-              <br>diárias com ótimos descontos.</h4>
-          </div>
-
-          <div id = "bloco_3">
-            <img id="coreia" src="images.jpg" alt="Coreia">
-            <img id = "estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação"><h6> de R$1800 por 5x de R$360,00</h6>
-            <h4>Experiências estilo dorama será encontrada em diárias <br> de baixo custo.
-            <br> Quartos com disponibilidade para uma família de 5 pessoas.</h4>
-          </div>
-        </section>
-        <br>
-        <br>
-        
-        <section id="ajuda">
-          <hr>
-          <div id="ajuda">
-            <h2>Precisa de Ajuda?</h2>
-            <p>Fale com a nossa equipe de suporte para tirar dúvidas, alterar reservas ou planejar sua viagem.</p>
-              <form class="form-contato" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
-                <input type="text" placeholder="Seu Nome" required>
-                <input type="email" placeholder="Seu E-mail" required>
-                <textarea placeholder="Como podemos te ajudar?" rows="4" required></textarea>
-                <button type="submit" class="btn">Enviar Mensagem</button>
-              </form>
+        <aside>
+            <nav id="lista">
+                <ul>
+                    <li>Início</li>
+                    <li>Viagens</li>
+                    <li>Roteiros</li>
+                    <li>Ajuda</li>
+                    <li>Sobre nós</li>
+                </ul>
+            </nav>
+        </aside>
+        <main id="principal">
+          <section id="banner-principal" class="secao">
+            <div class="banner-principal">
+                <h1>Sua próxima aventura começa aqui</h1>
+                <p>Encontre os melhores destinos, pacotes exclusivos e garanta momentos inesquecíveis.</p>
+                <br>
+                <a href="#cards" class="btn">Ver Promoções</a>
             </div>
-          </section>
-          <br>
-          <br>
-          <section id="sobre">
-            <h2>Sobre a Sam-Airline</h2>
-            <p>A <strong>Sam-Airline</strong> nasceu com o propósito de conectar pessoas aos seus sonhos através de viagens acessíveis, seguras e inesquecíveis.</p>
-            <p>Com mais de 10 anos de experiência no mercado de aviação e turismo, <br>nossa missão é garantir que você viaje com total tranquilidade, aproveitando as melhores condições de pagamento e suporte 24 horas por dia.</p>
+            <br><br><br>
         </section>
-      </main>
+        <br><br><hr>
+        <br>
+        <h2>Pacotes em Destaques</h2>
+            <section id="cards">
+                <div id="bloco_1">
+                    <img id="maldivas" src="ferias-nas-maldivas.jpg" alt="Maldivas">
+                    <img id="estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
+                    <h6>de R$1800 por 2x de R$900,00</h6>
+                    <h4>Viagem de Casal para as praias de Maldivas.Quarto especial para lua de mel com a diária a combinar. Boa indicação!</h4>
+                    <button type="submit" id="detalhes" class="btn">Ver Detalhes</button>
+                </div>
+
+                <div id="bloco_2">
+                    <img id="canada" src="roteiros-de-viagem-canada.jpg" alt="Canadá">
+                    <img id="estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
+                    <h6>de R$2400 por 2x de R$1200,00</h6>
+                    <h4>Explore os trechos canadenses com conforto e segurança,<br> viagem adequada para uma família com ótimos descontos!</h4>
+                    <button type="submit" class="btn">Ver Detalhes</button>
+                </div>
+
+                <div id="bloco_3">
+                    <img id="coreia" src="images.jpg" alt="Coreia">
+                    <img id="estrela" src="pngtree-five-star-rating-sign-png-image_5294765.png" alt="Avaliação">
+                    <h6>de R$1800 por 5x de R$360,00</h6>
+                    <h4>Experiências estilo dorama em diárias de baixo custo.<br>Quartos com disponibilidade para uma família de 5 pessoas1</h4>
+                    <button type="submit" class="btn">Ver Detalhes</button>
+                </div>
+                <br><br><br><br>
+            </section>
+            <br><br><hr>
+            <section id="roteiros" class="secao">
+              <br><br>
+              <h2>Roteiros Personalizados</h2>
+              <p>Montamos itinerários sob medida para você aproveitar cada segundo da sua viagem sem se preocupar com logística.</p>
+              <div class="grid-roteiros">
+                  <div class="box-roteiro">
+                    <img src="romantico.jpg" id="roteiro-romantico">
+                      <h3>Roteiro Romântico</h3>
+                      <br>
+                      <p>Jantares à beira-mar, passeios privativos e experiências VIP a dois.</p>
+                  </div>
+                  <div class="box-roteiro">
+                    <img src="familia.jpg" id="roteiro-familia">
+                      <h3>Roteiro em Família</h3>
+                      <br>
+                      <p>Parques, passeios guiados, hospedagem kids-friendly e facilidades de transporte.</p>
+                  </div>
+                  <div class="box-roteiro">
+                    <img src="aventura.jpg" id="roteiro-aventura">
+                      <h3>Roteiro Aventura</h3>
+                      <br>
+                      <p>Trilhas, esportes radicais e imersão cultural em destinos exuberantes.</p>
+                  </div>
+              </div>
+          </section>
+
+            <br><br>
+
+            <section id="ajuda">
+                <hr><br><br>
+                <h2>Precisa de Ajuda?</h2>
+                <br>
+                <p>Fale com a nossa equipe de suporte para tirar dúvidas, alterar reservas ou planejar sua viagem.</p>
+                <form class="form-contato" onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso!');">
+                    <input type="text" placeholder="Seu Nome" required>
+                    <input type="email" placeholder="Seu E-mail" required>
+                    <textarea placeholder="Como podemos te ajudar?" rows="4" required></textarea>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+            </section>
+
+            <br><br><hr>
+
+            <section id="sobre">
+            <br>
+                <h2>Sobre a Sam-Airline</h2>
+                <br><br>
+                <p>A <strong>Sam-Airline</strong> nasceu com o propósito de conectar pessoas aos seus sonhos através de viagens acessíveis, seguras e inesquecíveis.</p>
+                <p>Com mais de 10 anos de experiência no mercado de aviação e turismo, nossa missão é garantir que você viaje com total tranquilidade, aproveitando as melhores condições de pagamento e suporte 24 horas por dia.</p>
+            </section>
+        </main>
     </div> 
+
 </body>
 </html>
